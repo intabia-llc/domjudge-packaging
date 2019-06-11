@@ -8,7 +8,6 @@ function file_or_env {
         echo -n ${!1}
     fi
 }
-
 echo "[..] Setting timezone"
 ln -snf /usr/share/zoneinfo/${CONTAINER_TIMEZONE} /etc/localtime
 echo ${CONTAINER_TIMEZONE} > /etc/timezone
@@ -29,7 +28,7 @@ sed -ri -e "s#^;date\.timezone.*#date.timezone = ${CONTAINER_TIMEZONE}#" \
 echo "[ok] Done changing nginx and PHP configuration settings"; echo
 
 cd /domjudge
-
+sudo chown -R domjudge:domjudge .
 # Determine whether we have a legacy DOMjudge instance, i.e. one without Symfony
 USE_LEGACY=0
 if [[ ! -d webapp ]]
