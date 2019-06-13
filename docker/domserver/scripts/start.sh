@@ -84,16 +84,16 @@ then
 	# Replace nginx php socket location
 	sed -i 's!server unix:.*!server unix:/var/run/php-fpm-domjudge.sock;!' /etc/nginx/sites-enabled/default
 	# Remove default FPM pool config and link in DOMJudge version
-	if [[ -f /etc/php/7.0/fpm/pool.d/www.conf ]]
+	if [[ -f /etc/php/7.2/fpm/pool.d/www.conf ]]
 	then
-		rm /etc/php/7.0/fpm/pool.d/www.conf
+		rm /etc/php/7.2/fpm/pool.d/www.conf
 	fi
-	if [[ ! -f /etc/php/7.0/fpm/pool.d/domjudge.conf ]]
+	if [[ ! -f /etc/php/7.2/fpm/pool.d/domjudge.conf ]]
 	then
-		ln -s /opt/domjudge/domserver/etc/domjudge-fpm.conf /etc/php/7.0/fpm/pool.d/domjudge.conf
+		ln -s /opt/domjudge/domserver/etc/domjudge-fpm.conf /etc/php/7.2/fpm/pool.d/domjudge.conf
 	fi
 	# Change pm.max_children
-	sed --follow-symlinks -i "s/^pm\.max_children = .*$/pm.max_children = ${FPM_MAX_CHILDREN}/" /etc/php/7.0/fpm/pool.d/domjudge.conf
+	sed --follow-symlinks -i "s/^pm\.max_children = .*$/pm.max_children = ${FPM_MAX_CHILDREN}/" /etc/php/7.2/fpm/pool.d/domjudge.conf
 else
 	# Replace nginx php socket location
 	sed -i 's!server unix:.*!server unix:/var/run/php/php7.2-fpm.sock;!' /etc/nginx/sites-enabled/default
