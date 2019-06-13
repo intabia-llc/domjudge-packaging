@@ -13,13 +13,13 @@ FILE=domjudge.tar.gz
 
 echo "[..] Downloading DOMJuge version ${VERSION}..."
 
-if ! curl -f -s -o ${FILE} ${URL}
-then
-	echo "[!!] DOMjudge version ${VERSION} file not found on https://www.domjudge.org/releases"
-	exit 1
-fi
-
-echo "[ok] DOMjudge version ${VERSION} downloaded as domjudge.tar.gz"; echo
+#if ! curl -f -s -o ${FILE} ${URL}
+#then
+#	echo "[!!] DOMjudge version ${VERSION} file not found on https://www.domjudge.org/releases"
+#	exit 1
+#fi
+#
+#echo "[ok] DOMjudge version ${VERSION} downloaded as domjudge.tar.gz"; echo
 
 echo "[..] Building Docker image for domserver using intermediate build image..."
 docker build -t domjudge/domserver:${VERSION} -f domserver/Dockerfile .

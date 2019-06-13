@@ -3,14 +3,20 @@ MAINTAINER DOMjudge team <team@domjudge.org>
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN apt-get update && apt-get upgrade \
+    && apt-get install --no-install-recommends --no-install-suggests -y apt-transport-https \
+    lsb-release ca-certificates wget \
+    && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
+    && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+
 # Install required packages for build of domserver
 RUN apt-get update \
 	&& apt-get install --no-install-recommends --no-install-suggests -y \
 	autoconf automake git \
 	gcc g++ make zip unzip \
-	php-cli php-zip \
-	php-gd php-curl php-mysql php-json php-intl \
-	php-mcrypt php-gmp php-xml php-mbstring \
+	php7.2-cli php7.2-zip \
+	php7.2-gd php7.2-curl php7.2-mysql php7.2-json php7.2-intl \
+	php-mcrypt php7.2-gmp php7.2-xml php7.2-mbstring php7.2-ldap \
 	sudo bsdmainutils ntp libcgroup-dev procps \
 	linuxdoc-tools linuxdoc-tools-text \
 	groff texlive-latex-recommended texlive-latex-extra \
@@ -48,13 +54,19 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	FPM_MAX_CHILDREN=40 \
 	DJ_DB_INSTALL_BARE=0
 
+RUN apt-get update && apt-get upgrade \
+    && apt-get install --no-install-recommends --no-install-suggests -y apt-transport-https \
+    lsb-release ca-certificates wget \
+    && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
+    && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+
 # Install required packages for running of domserver
 RUN apt-get update \
 	&& apt-get install --no-install-recommends --no-install-suggests -y \
 	zip unzip acl supervisor mariadb-client apache2-utils \
-	nginx php-cli php-fpm php-zip \
-	php-gd php-curl php-mysql php-json php-intl \
-	php-mcrypt php-gmp php-xml php-mbstring php-ldap \
+	nginx php7.2-cli php7.2-fpm php7.2-zip \
+	php7.2-gd php7.2-curl php7.2-mysql php7.2-json php7.2-intl \
+	php-mcrypt php7.2-gmp php7.2-xml php7.2-mbstring php7.2-ldap \
 	enscript lpr \
 	&& rm -rf /var/lib/apt/lists/*
 
