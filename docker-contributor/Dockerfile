@@ -18,7 +18,7 @@ RUN apt-get update \
     autoconf automake git acl \
     gcc g++ make zip unzip mariadb-client \
     nginx php7.2 php7.2-cli php7.2-fpm php7.2-zip \
-    php7.2-gd php7.2-curl php7.2-mysql php7.2-json php7.2-intl \
+    php7.2-gd php7.2-curl php7.2-mysql php7.2-json php7.2-intl php7.2-ldap \
     php7.2-gmp php7.2-xml php7.2-mbstring \
     bsdmainutils ntp \
     linuxdoc-tools linuxdoc-tools-text \

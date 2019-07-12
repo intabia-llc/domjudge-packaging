@@ -136,8 +136,8 @@ then
   sed -i '/access_log/d' $NGINX_CONFIG_FILE
   sed -i '/error_log/d' $NGINX_CONFIG_FILE
   # Use debug front controller
-  sed -i 's/app\.php/app_dev.php/g' $NGINX_CONFIG_FILE
-  sed -i 's/app\\\.php/app\\_dev.php/g' $NGINX_CONFIG_FILE
+  sed -i 's/app\.php/7.2/app_dev.php/g' $NGINX_CONFIG_FILE
+  sed -i 's/app\\\.php/7.2/app\\_dev.php/g' $NGINX_CONFIG_FILE
   # Set up permissions (make sure the script does not stop if this fails, as this will happen on macOS / Windows)
   chown domjudge: /domjudge/webapp/var
 fi

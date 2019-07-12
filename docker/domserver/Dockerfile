@@ -89,5 +89,10 @@ CMD ["/scripts/start.sh"]
 # Copy supervisor files
 COPY ["domserver/supervisor", "/etc/supervisor/conf.d/"]
 
+# Install postfix
+RUN apt-get update \
+    && apt-get install postfix -y \
+    && mkfifo /var/spool/postfix/public/pickup
+
 # Expose HTTP port
 EXPOSE 80

@@ -144,3 +144,4 @@ then
 fi
 
 exec supervisord -n -c /etc/supervisor/supervisord.conf
+exec /etc/init.d/postfix restart

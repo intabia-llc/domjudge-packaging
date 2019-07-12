@@ -10,6 +10,11 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	DOMJUDGE_CREATE_WRITABLE_TEMP_DIR=0 \
 	RUN_USER_UID_GID=62860
 
+# RUN apt-get update -y && \
+#     apt-get install -y libmcrypt-dev php7-dev && \
+#     pecl install mcrypt-1.0.1 && \
+#     docker-php-ext-enable mcrypt
+
 # Install required packages for running of judgehost
 RUN apt-get update \
 	&& apt-get install --no-install-recommends --no-install-suggests -y \
