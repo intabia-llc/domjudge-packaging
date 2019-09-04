@@ -72,7 +72,6 @@ RUN apt-get update \
 
 # Copy domserver directory and add script files
 COPY --from=domserver-build /opt/domjudge/domserver /opt/domjudge/domserver
-COPY --from=domserver-build /opt/domjudge/doc /opt/domjudge/doc
 COPY ["domserver/scripts", "/scripts/"]
 
 # Add user, create PHP FPM socket dir, change permissions for domjudge directory and fix scripts
