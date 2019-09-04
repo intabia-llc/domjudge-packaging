@@ -8,18 +8,7 @@ then
 	exit 1
 fi
 
-URL=https://www.domjudge.org/releases/domjudge-${VERSION}.tar.gz
-FILE=domjudge.tar.gz
-
-echo "[..] Downloading DOMJuge version ${VERSION}..."
-
-#if ! curl -f -s -o ${FILE} ${URL}
-#then
-#	echo "[!!] DOMjudge version ${VERSION} file not found on https://www.domjudge.org/releases"
-#	exit 1
-#fi
-#
-#echo "[ok] DOMjudge version ${VERSION} downloaded as domjudge.tar.gz"; echo
+echo "[ok] DOMjudge version ${VERSION}"; echo
 
 echo "[..] Building Docker image for domserver using intermediate build image..."
 docker build -t domjudge/domserver:${VERSION} -f domserver/Dockerfile .
@@ -48,3 +37,8 @@ echo "$ docker tag domjudge/domserver:${VERSION} domjudge/domserver:latest && \
 docker tag domjudge/judgehost:${VERSION} domjudge/judgehost:latest && \
 docker tag domjudge/default-judgehost-chroot:${VERSION} domjudge/default-judgehost-chroot:latest && \
 docker push domjudge/domserver:latest && docker push domjudge/judgehost:latest && docker push domjudge/default-judgehost-chroot:latest"
+docker tag domjudge/judgehost:${VERSION} docker.intabia.ru:5000/domjudge/judgehost:${VERSION} && \
+docker tag domjudge/default-judgehost-chroot:${VERSION} docker.intabia.ru:5000/domjudge/default-judgehost-chroot:${VERSION} && \
+docker tag domjudge/domserver:${VERSION} docker.intabia.ru:5000/domjudge/domserver:${VERSION}
+
+

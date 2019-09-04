@@ -1,9 +1,9 @@
-FROM debian:latest AS domserver-build
+FROM debian:9 AS domserver-build
 MAINTAINER DOMjudge team <team@domjudge.org>
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get upgrade \
+RUN apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -y apt-transport-https \
     lsb-release ca-certificates wget \
     && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
@@ -34,14 +34,14 @@ RUN php composer-setup.php \
     && mv /composer.phar /usr/local/bin/composer
 
 # Add DOMjudge source code and build script
-ADD domjudge.tar.gz /domjudge-src
+ADD domjudge /domjudge-src
 ADD domserver/build.sh /domjudge-src
 
 # Build and install domserver
 RUN /domjudge-src/build.sh
 
 # Now create an image with the actual build in it
-FROM debian:latest
+FROM debian:9
 MAINTAINER DOMjudge team <team@domjudge.org>
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -54,7 +54,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 	FPM_MAX_CHILDREN=40 \
 	DJ_DB_INSTALL_BARE=0
 
-RUN apt-get update && apt-get upgrade \
+RUN apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests -y apt-transport-https \
     lsb-release ca-certificates wget \
     && wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg \
@@ -66,7 +66,7 @@ RUN apt-get update \
 	zip unzip acl supervisor mariadb-client apache2-utils \
 	nginx php7.2-cli php7.2-fpm php7.2-zip \
 	php7.2-gd php7.2-curl php7.2-mysql php7.2-json php7.2-intl \
-	php-mcrypt php7.2-gmp php7.2-xml php7.2-mbstring php7.2-ldap \
+	php7.2-gmp php7.2-xml php7.2-mbstring php7.2-ldap \
 	enscript lpr \
 	&& rm -rf /var/lib/apt/lists/*
 

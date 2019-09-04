@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-cd /domjudge-src/domjudge*
+cd /domjudge-src
 USE_LEGACY=0
 if [[ ! -d webapp ]]
 then
@@ -13,6 +13,7 @@ else
   echo "default	http://localhost/api/v4	dummy	dummy" > etc/restapi.secret
 fi
 chown -R domjudge: .
+sudo -u domjudge make dist
 sudo -u domjudge ./configure -with-baseurl=http://localhost/
 sudo -u domjudge make judgehost
 make install-judgehost
