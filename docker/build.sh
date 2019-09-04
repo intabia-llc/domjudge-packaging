@@ -17,7 +17,7 @@ echo "[ok] Done building Docker image for domserver"
 echo "[..] Building Docker image for judgehost using intermediate build image..."
 docker build -t domjudge/judgehost:${VERSION}-build -f judgehost/Dockerfile.build .
 docker rm -f domjudge-judgehost-${VERSION}-build > /dev/null 2>&1 || true
-docker run -it --name domjudge-judgehost-${VERSION}-build --privileged domjudge/judgehost:${VERSION}-build
+docker run --name domjudge-judgehost-${VERSION}-build --privileged domjudge/judgehost:${VERSION}-build
 docker cp domjudge-judgehost-${VERSION}-build:/chroot.tar.gz .
 docker cp domjudge-judgehost-${VERSION}-build:/judgehost.tar.gz .
 docker rm -f domjudge-judgehost-${VERSION}-build
