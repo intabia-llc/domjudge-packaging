@@ -20,8 +20,8 @@ RUN apt-get update \
 	&& apt-get install --no-install-recommends --no-install-suggests -y \
 	zip unzip acl supervisor sudo procps libcgroup1 \
 	php-cli php-zip php-gd php-curl php-mysql php-json \
-	php-gmp php-xml php-mbstring \
-	openjdk-8-jre-headless openjdk-8-jdk \
+	php-mcrypt php-gmp php-xml php-mbstring \
+	gcc g++ openjdk-8-jre-headless openjdk-8-jdk ghc fp-compiler \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Add chroot and judgehost data
