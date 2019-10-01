@@ -37,8 +37,8 @@ echo "$ docker tag domjudge/domserver:${VERSION} domjudge/domserver:latest && \
 docker tag domjudge/judgehost:${VERSION} domjudge/judgehost:latest && \
 docker tag domjudge/default-judgehost-chroot:${VERSION} domjudge/default-judgehost-chroot:latest && \
 docker push domjudge/domserver:latest && docker push domjudge/judgehost:latest && docker push domjudge/default-judgehost-chroot:latest"
-docker tag domjudge/judgehost:${VERSION} docker.intabia.ru:5000/domjudge/judgehost:${VERSION} && \
-docker tag domjudge/default-judgehost-chroot:${VERSION} docker.intabia.ru:5000/domjudge/default-judgehost-chroot:${VERSION} && \
-docker tag domjudge/domserver:${VERSION} docker.intabia.ru:5000/domjudge/domserver:${VERSION}
+docker tag domjudge/judgehost:${VERSION} registry.intabia.ru/domjudge/judgehost:${VERSION} && \
+docker tag domjudge/default-judgehost-chroot:${VERSION} registry.intabia.ru/domjudge/default-judgehost-chroot:${VERSION} && \
+docker tag domjudge/domserver:${VERSION} registry.intabia.ru/domjudge/domserver:${VERSION}
 
 
